@@ -276,6 +276,7 @@
             this.pbSettings.Size = new System.Drawing.Size(121, 52);
             this.pbSettings.TabIndex = 24;
             this.pbSettings.TabStop = false;
+            this.pbSettings.Click += new System.EventHandler(this.bSettings_Click);
             // 
             // pbClose
             // 

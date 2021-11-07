@@ -49,6 +49,7 @@
             this.pbSettings = new System.Windows.Forms.PictureBox();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.pbSupport = new System.Windows.Forms.PictureBox();
+            this.lbOnline = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbSite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbVK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -300,14 +301,26 @@
             this.pbSupport.Size = new System.Drawing.Size(121, 52);
             this.pbSupport.TabIndex = 26;
             this.pbSupport.TabStop = false;
+            this.pbSupport.Click += new System.EventHandler(this.pbSupport_Click);
+            // 
+            // lbOnline
+            // 
+            this.lbOnline.AutoSize = true;
+            this.lbOnline.Location = new System.Drawing.Point(285, 524);
+            this.lbOnline.Name = "lbOnline";
+            this.lbOnline.Size = new System.Drawing.Size(118, 17);
+            this.lbOnline.TabIndex = 27;
+            this.lbOnline.Text = "Текущий онлайн";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.lbOnline);
             this.Controls.Add(this.pbSupport);
             this.Controls.Add(this.pbClose);
             this.Controls.Add(this.pbSettings);
@@ -329,6 +342,7 @@
             this.Controls.Add(this.pbVK);
             this.Controls.Add(this.pictureBox2);
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.SystemColors.Control;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -379,6 +393,7 @@
         private System.Windows.Forms.PictureBox pbSettings;
         private System.Windows.Forms.PictureBox pbClose;
         private System.Windows.Forms.PictureBox pbSupport;
+        private System.Windows.Forms.Label lbOnline;
     }
 }
 

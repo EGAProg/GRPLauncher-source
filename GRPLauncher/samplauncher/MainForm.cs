@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using SampQueryApi;
 
 namespace SAMPLauncher
 {
@@ -23,6 +24,12 @@ namespace SAMPLauncher
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
+            SampQuery api = new SampQuery("176.31.233.153", 1493, 'i');
+            var response = api.read();
+
+            var players = response["Players"];
+            lbOnline.Text = players;
 
 
             try
@@ -182,15 +189,21 @@ namespace SAMPLauncher
         private void pbClose_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        
+        }        
 
         private void lErrorReport_Click(object sender, EventArgs e)
         {
             Process.Start("https://vk.com/" + ServerInfo.group);
         }
-    }
+
+        private void pbSupport_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://vk.com/im?sel=-208029309");
+        }
+
+        
+           
+}
 
     static class ServerInfo
     {

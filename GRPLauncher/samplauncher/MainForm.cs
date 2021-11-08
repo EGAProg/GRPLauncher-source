@@ -27,7 +27,7 @@ namespace SAMPLauncher
 
             SampQuery api = new SampQuery("176.31.233.153", 1493, 'i');
             var response = api.read();
-
+            
             var players = response["Players"];
             lbOnline.Text = players;
 

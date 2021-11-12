@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using SampQueryApi;
@@ -18,24 +19,15 @@ namespace SAMPLauncher
     {
         private Point mouseOffset;
         private bool isMouseDown = false;
-
+        public int close = 0;
         public MainForm()
         {
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            //var sq = new SampQuery("185.169.134.59", 7777); // Test Arizona Mesa
 
-            try
-            {
-                var sq = new SampQuery("176.31.233.153", 1493);
-                SampServerInfoData data = sq.GetServerInfo();
-                lbOnline.Text = "Текущий онлайн: " + data.Players + "/" + data.MaxPlayers;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            Thread onlineCheckThread = new Thread(new ThreadStart(onlineCheck));
+            onlineCheckThread.Start();
 
             try
             {
@@ -64,13 +56,32 @@ namespace SAMPLauncher
         }
 
 
+        public void onlineCheck()
+        {
+            var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
+            try
+            {
+                //var sq = new SampQuery("176.31.233.153", 1493);
+                SampServerInfoData data = sq.GetServerInfo();
 
+                while (close == 0)
+                {
+                    lbOnline.Text = "Текущий онлайн: " + data.Players + "/" + data.MaxPlayers;
+                    Thread.Sleep(1000);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         private void bPlay_Click(object sender, EventArgs e)
         {
-            if (tbNickname.Text.Length >= 3 && tbNickname.Text.Length <= 32 || tbNickname.Text == "Nickname")
+            if (tbNickname.Text.Contains("_") && tbNickname.Text.Length <= 32)
             {
                 ClientInfo.nickname = tbNickname.Text;
+            
                 try
                 {
                     Process.Start(ClientInfo.path + "/samp.exe", ServerInfo.ip + ":" + ServerInfo.port + " -n" + ClientInfo.nickname);
@@ -84,18 +95,14 @@ namespace SAMPLauncher
                     if (ClientInfo.exitonstart)// Вызывает ошибку
                     {
                         Application.Exit();
-
+                
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }*/
-            }
-            else
-            {
-                MessageBox.Show("Длинный или не подходяший никнейм", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }            
         }
 
         private void bModpack_Click(object sender, EventArgs e)
@@ -194,6 +201,7 @@ namespace SAMPLauncher
         private void pbClose_Click(object sender, EventArgs e)
         {
             Close();
+            _ = close++;
         }        
 
         private void lErrorReport_Click(object sender, EventArgs e)

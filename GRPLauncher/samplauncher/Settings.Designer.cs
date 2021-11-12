@@ -38,7 +38,7 @@
             // 
             // tbPath
             // 
-            this.tbPath.Location = new System.Drawing.Point(16, 39);
+            this.tbPath.Location = new System.Drawing.Point(16, 41);
             this.tbPath.Margin = new System.Windows.Forms.Padding(4);
             this.tbPath.Name = "tbPath";
             this.tbPath.Size = new System.Drawing.Size(256, 22);
@@ -48,7 +48,7 @@
             // lPath
             // 
             this.lPath.AutoSize = true;
-            this.lPath.Location = new System.Drawing.Point(16, 16);
+            this.lPath.Location = new System.Drawing.Point(13, 20);
             this.lPath.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lPath.Name = "lPath";
             this.lPath.Size = new System.Drawing.Size(47, 17);
@@ -61,7 +61,7 @@
             this.bPath.FlatAppearance.BorderSize = 0;
             this.bPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bPath.ForeColor = System.Drawing.Color.Black;
-            this.bPath.Location = new System.Drawing.Point(281, 39);
+            this.bPath.Location = new System.Drawing.Point(289, 40);
             this.bPath.Margin = new System.Windows.Forms.Padding(4);
             this.bPath.Name = "bPath";
             this.bPath.Size = new System.Drawing.Size(53, 25);
@@ -112,6 +112,8 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings";
             this.Text = "Настройки";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Settings_FormClosing);

@@ -203,6 +203,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(45)))), ((int)(((byte)(252)))));
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.label4.Location = new System.Drawing.Point(524, 610);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 24);
@@ -214,7 +215,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
-            this.label5.Location = new System.Drawing.Point(1093, 328);
+            this.label5.Location = new System.Drawing.Point(1093, 318);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 17);
             this.label5.TabIndex = 18;
@@ -225,7 +226,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(1067, 313);
+            this.pictureBox3.Location = new System.Drawing.Point(1067, 304);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(183, 44);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -237,7 +238,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(1107, 403);
+            this.label6.Location = new System.Drawing.Point(1107, 377);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 17);
             this.label6.TabIndex = 20;
@@ -248,7 +249,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(1067, 389);
+            this.pictureBox4.Location = new System.Drawing.Point(1067, 364);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(183, 44);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -308,9 +309,8 @@
             this.lbOnline.AutoSize = true;
             this.lbOnline.Location = new System.Drawing.Point(285, 524);
             this.lbOnline.Name = "lbOnline";
-            this.lbOnline.Size = new System.Drawing.Size(118, 17);
+            this.lbOnline.Size = new System.Drawing.Size(0, 17);
             this.lbOnline.TabIndex = 27;
-            this.lbOnline.Text = "Текущий онлайн";
             // 
             // MainForm
             // 

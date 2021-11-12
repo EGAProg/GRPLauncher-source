@@ -1,17 +1,9 @@
-/*
- * Well I didn't like the 'simplicity' in the original SA-MP query for C#.
- * This is intended for those seeking a nice and simple way to query a server.
- * 
- * Anyways, I was bored. Have fun coding! :D
- * 
- * Coded by Lorenc (zeelorenc)
-*/
-
 using System;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
+using System.Text;
 
 namespace SampQueryApi
 {
@@ -68,7 +60,7 @@ namespace SampQueryApi
                             writer.Write(iPort);
                             writer.Write(packet_type);
 
-                            if (bDebug) Console.Write("Transmitting Packet '" + packet_type + "'" + Environment.NewLine);
+                            if (bDebug) Console.WriteLine("Transmition Packet \'" + packet_type + "\'");
 
                             TransmitMS = DateTime.Now; // To get ping (ms to reach back & forth to the svr)
                         }
@@ -102,13 +94,12 @@ namespace SampQueryApi
 
                 ReceiveMS = DateTime.Now;
 
-                if (flushdata)
-                    dData.Clear();
+                if (flushdata) dData.Clear();
 
                 string ping = ReceiveMS.Subtract(TransmitMS).Milliseconds.ToString();
 
                 MemoryStream stream = new MemoryStream(szReceive);
-                BinaryReader read = new BinaryReader(stream);
+                BinaryReader read = new BinaryReader(stream, Encoding.ASCII);
 
                 using (stream)
                 {

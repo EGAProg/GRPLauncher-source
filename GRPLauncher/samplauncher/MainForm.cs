@@ -26,11 +26,20 @@ namespace SAMPLauncher
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
             SampQuery api = new SampQuery("176.31.233.153", 1493, 'i');
-            var response = api.read();
-            
-            var players = response["Players"];
-            lbOnline.Text = players;
+            //var sq = new SampQuery("176.31.233.153", 1493, '9');
+            //List<SampServerPlayerData> datas = sq.GetServerPlayers();
 
+            try
+            {
+                var responcse = api.read();
+                var players = responcse["players"];
+                var maxPlayers = responcse["maxplayers"];
+                lbOnline.Text = "Текущий онлайн: " + players + "/" + maxPlayers;
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             try
             {

@@ -4,154 +4,326 @@ using System.Net;
 using System.Net.Sockets;
 using System.Collections.Generic;
 using System.Text;
+using System.Reflection;
+using System.Globalization;
+
 
 namespace SampQueryApi
 {
-    class SampQuery
+    sealed class SampQuery
     {
-        IPAddress serverIp;
-        IPEndPoint serverEndPoint;
-        Socket svrConnect;
+        private const char serverInfoPacketType = 'i';
+        private const char serverRulesPacketType = 'r';
+        private const char serverPlayersPacketType = 'd';
+        private const int szReceiveArraySize = 2048;
+        private const int timeoutMilliseconds = 5000;
 
-        string szIP;
-        ushort iPort;
-        bool bDebug = false;
+        private readonly string szIP;
+        private readonly ushort iPort;
+        private readonly IPAddress serverIp;
+        private readonly IPEndPoint serverEndPoint;
+        private readonly string password;
+        private readonly char[] socketHeader;
 
-        DateTime TransmitMS = new DateTime();
-        DateTime ReceiveMS = new DateTime();
+        private Socket connect2Server;
+        private DateTime ReceiveMS;
+        private DateTime TransmitMS;
 
-        Dictionary<string, string> dData = new Dictionary<string, string>();
-
-        public SampQuery(string ip, ushort port, char packet_type, bool console_debug = false)
+        public SampQuery(in string ip, in ushort port)
         {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance); // If you get an error at here, please install "System.Text.Encodings.CodePagse" package from NuGet
+
+            ReceiveMS = new DateTime();
+
+            serverIp = new IPAddress(IPAddress.Parse(ip).GetAddressBytes());
+            serverEndPoint = new IPEndPoint(serverIp, port);
+
+            szIP = ip;
+            iPort = port;
+
+            socketHeader = "SAMP".ToCharArray();
+        }
+        public SampQuery(in IPAddress ip, in ushort port) : this(ip.ToString(), port) { }
+        public SampQuery(in string ip, in ushort port, in string password) : this(ip, port)
+        {
+            this.password = password;
+        }
+        public SampQuery(in IPAddress ip, in ushort port, in string password) : this(ip.ToString(), port, password) { }
+
+        private byte[] SendSocketToServer(in char packetType)
+        {
+            connect2Server = new Socket(serverEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+            {
+                SendTimeout = timeoutMilliseconds,
+                ReceiveTimeout = timeoutMilliseconds
+            };
+
+            var stream = new MemoryStream();
+            var writer = new BinaryWriter(stream);
+
+            string[] szSplitIP = szIP.Split('.');
+
+            writer.Write(socketHeader);
+
+            for (sbyte i = 0; i < szSplitIP.Length; i++)
+            {
+                writer.Write(Convert.ToByte(Convert.ToInt16(szSplitIP[i])));
+            }
+
+            writer.Write(iPort);
+            writer.Write(packetType);
+
+            TransmitMS = DateTime.Now; // To get ping (ms to reach back & forth to the svr)
+
+
+            _ = connect2Server.SendTo(stream.ToArray(), serverEndPoint);
+
+
+            EndPoint rawPoint = serverEndPoint;
+            var szReceive = new byte[szReceiveArraySize];
+
+            _ = connect2Server.ReceiveFrom(szReceive, ref rawPoint);
+
+            
+            connect2Server.Close();
+            return szReceive;
+        }
+        private List<string> ReceiveRconAnswer()
+        {
+            EndPoint endpoint = new IPEndPoint(serverIp, iPort);
+
+            byte[] rBuffer = new byte[500];
+            List<string> results = new List<string>();
+
+            _ = connect2Server.ReceiveFrom(rBuffer, ref endpoint);
+
+            MemoryStream stream = new MemoryStream(rBuffer);
+            BinaryReader reader = new BinaryReader(stream, Encoding.GetEncoding(1251));
+            reader.ReadBytes(11);
+            short len;
+
+            while ((len = reader.ReadInt16()) != 0)
+                results.Add(new string(reader.ReadChars(len)));
+
+            return results;
+        }
+        public List<string> SendRconCommand(string cmd)
+        {
+            connect2Server = new Socket(serverEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp)
+            {
+                SendTimeout = timeoutMilliseconds,
+                ReceiveTimeout = timeoutMilliseconds
+            };
+
+            var endpoint = new IPEndPoint(serverIp, iPort);
+
             MemoryStream stream = new MemoryStream();
             BinaryWriter writer = new BinaryWriter(stream);
 
-            try
-            {
-                serverIp = new IPAddress(IPAddress.Parse(ip).GetAddressBytes());
-                serverEndPoint = new IPEndPoint(serverIp, port);
+            writer.Write(socketHeader);
 
-                svrConnect = new Socket(serverEndPoint.AddressFamily, SocketType.Dgram, ProtocolType.Udp);
+            string[] SplitIP = szIP.ToString().Split('.');
 
-                svrConnect.SendTimeout = 5000;
-                svrConnect.ReceiveTimeout = 5000;
-                szIP = ip;
-                iPort = port;
-                bDebug = console_debug;
+            for (int i = 0; i < SplitIP.Length; i++)
+                writer.Write(Convert.ToByte(Convert.ToInt32(SplitIP[i])));
 
-                if(bDebug) Console.Write("Connecting to " + ip + ":" + port + Environment.NewLine);
+            writer.Write(iPort);
 
-                try
-                {
-                    using (stream)
-                    {
-                        using (writer)
-                        {
-                            string[] szSplitIP = szIP.ToString().Split('.');
+            writer.Write('x');
 
-                            writer.Write("SAMP".ToCharArray());
+            writer.Write((ushort)password.Length);
+            writer.Write(password.ToCharArray());
 
-                            writer.Write(Convert.ToByte(Convert.ToInt16(szSplitIP[0])));
-                            writer.Write(Convert.ToByte(Convert.ToInt16(szSplitIP[1])));
-                            writer.Write(Convert.ToByte(Convert.ToInt16(szSplitIP[2])));
-                            writer.Write(Convert.ToByte(Convert.ToInt16(szSplitIP[3])));
+            writer.Write((ushort)cmd.Length);
+            writer.Write(cmd.ToCharArray());
 
-                            writer.Write(iPort);
-                            writer.Write(packet_type);
+            _ = connect2Server.SendTo(stream.ToArray(), endpoint);
 
-                            if (bDebug) Console.WriteLine("Transmition Packet \'" + packet_type + "\'");
-
-                            TransmitMS = DateTime.Now; // To get ping (ms to reach back & forth to the svr)
-                        }
-                    }
-                    svrConnect.SendTo(stream.ToArray(), serverEndPoint);
-                }
-                catch (Exception e)
-                {
-                    if (bDebug) Console.Write("Failed to receive packet:", e);
-                }
-            }
-            catch (Exception e)
-            {
-                if (bDebug) Console.Write("Failed to connect to IP:", e);
-            }
+            return ReceiveRconAnswer();
         }
 
-        public Dictionary<string, string> read(bool flushdata = true)
+
+        public List<SampServerPlayerData> GetServerPlayers()
         {
-            try
+            byte[] szReceive = SendSocketToServer(serverPlayersPacketType);
+
+            List<SampServerPlayerData> datas = new List<SampServerPlayerData>();
+            var stream = new MemoryStream(szReceive);
+            BinaryReader read = new BinaryReader(stream);
+            _ = read.ReadBytes(10);
+            _ = read.ReadChar();
+
+            for (int i = 0, iTotalPlayers = read.ReadInt16(); i < iTotalPlayers; i++)
             {
-                serverIp = new IPAddress(IPAddress.Parse(szIP).GetAddressBytes());
-                serverEndPoint = new IPEndPoint(serverIp, iPort);
-
-                EndPoint rawPoint = (EndPoint)serverEndPoint;
-
-                byte[] szReceive = new byte[2048];
-                svrConnect.ReceiveFrom(szReceive, ref rawPoint);
-
-                svrConnect.Close();
-
-                ReceiveMS = DateTime.Now;
-
-                if (flushdata) dData.Clear();
-
-                string ping = ReceiveMS.Subtract(TransmitMS).Milliseconds.ToString();
-
-                MemoryStream stream = new MemoryStream(szReceive);
-                BinaryReader read = new BinaryReader(stream, Encoding.ASCII);
-
-                using (stream)
+                datas.Add(new SampServerPlayerData
                 {
-                    using (read)
-                    {
-                        read.ReadBytes(10);
-
-                        switch (read.ReadChar())
-                        {
-                            case 'i':
-                                dData.Add("password",       Convert.ToString(read.ReadByte()));
-                                dData.Add("players",        Convert.ToString(read.ReadInt16()));
-                                dData.Add("maxplayers",     Convert.ToString(read.ReadInt16()));
-                                dData.Add("hostname",       new string(read.ReadChars(read.ReadInt32())));
-                                dData.Add("gamemode",       new string(read.ReadChars(read.ReadInt32())));
-                                dData.Add("mapname",        new string(read.ReadChars(read.ReadInt32())));
-                                break;
-
-                            case 'r':
-                                for (int i = 0, iRules = read.ReadInt16(); i < iRules; i++)
-                                    dData.Add(new string(read.ReadChars(read.ReadByte())), new string(read.ReadChars(read.ReadByte())));
-                                break;
-
-                            case 'c':
-                                for (int i = 0, iPlayers = read.ReadInt16(); i < iPlayers; i++)
-                                    dData.Add(new string(read.ReadChars(read.ReadByte())), Convert.ToString(read.ReadInt32()));
-                                break;
-
-                            case 'd':
-                                for (int i = 0, iTotalPlayers = read.ReadInt16(); i < iTotalPlayers; i++)
-                                {
-                                    string id = Convert.ToString(read.ReadByte());
-                                    dData.Add(id + ".name",  new string(read.ReadChars(read.ReadByte())));
-                                    dData.Add(id + ".score", Convert.ToString(read.ReadInt32()));
-                                    dData.Add(id + ".ping", Convert.ToString(read.ReadInt32()));
-                                }
-                                break;
-
-                            case 'p':
-                                dData.Add("ping", ping.ToString());
-                                break;
-
-                        }
-                    }
-                }
-
+                    PlayerId = Convert.ToByte(read.ReadByte()),
+                    PlayerName = new string(read.ReadChars(read.ReadByte())),
+                    PlayerScore = read.ReadInt32(),
+                    PlayerPing = read.ReadInt32()
+                });
             }
-            catch (Exception e)
-            {
-                if (bDebug) Console.Write("There's been a problem reading the data", e);
-            }
-            return dData;
+
+            return datas;
         }
+        public SampServerInfoData GetServerInfo()
+        {
+            byte[] szReceive = SendSocketToServer(serverInfoPacketType);
+
+            ReceiveMS = DateTime.Now;
+            var stream = new MemoryStream(szReceive);
+            BinaryReader read = new BinaryReader(stream, Encoding.GetEncoding(1251));
+
+            _ = read.ReadBytes(10);
+            _ = read.ReadChar();
+
+            return new SampServerInfoData
+            {
+                Password = Convert.ToBoolean(read.ReadByte()),
+                Players = read.ReadUInt16(),
+                MaxPlayers = read.ReadUInt16(),
+
+                HostName = new string(read.ReadChars(read.ReadInt32())),
+                GameMode = new string(read.ReadChars(read.ReadInt32())),
+                Language = new string(read.ReadChars(read.ReadInt32())),
+
+                ServerPing = ReceiveMS.Subtract(TransmitMS).Milliseconds,
+            };
+        }
+        public SampServerRulesData GetServerRules()
+        {
+            byte[] szReceive = SendSocketToServer(serverRulesPacketType);
+            var sampServerRulesData = new SampServerRulesData();
+
+            var stream = new MemoryStream(szReceive);
+            BinaryReader read = new BinaryReader(stream, Encoding.GetEncoding(1251));
+
+            _ = read.ReadBytes(10);
+            _ = read.ReadChar();
+
+            string value;
+            object val;
+
+            for (int i = 0, iRules = read.ReadInt16(); i < iRules; i++)
+            {
+                PropertyInfo property = sampServerRulesData.GetType().GetProperty(new string(read.ReadChars(read.ReadByte())).Replace(' ', '_'), BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+                value = new string(read.ReadChars(read.ReadByte()));
+
+                if (property != null)
+                {
+                    if (property.PropertyType == typeof(bool)) val = value == "On";
+                    else if (property.PropertyType == typeof(Uri)) val = new Uri("http://" + value, UriKind.Absolute);
+                    else if (property.PropertyType == typeof(DateTime)) val = DateTime.Today.Add(TimeSpan.Parse(value));
+                    else val = Convert.ChangeType(value, property.PropertyType, CultureInfo.InvariantCulture);
+
+                    property.SetValue(sampServerRulesData, val);
+                }
+            }
+            return sampServerRulesData;
+        }
+    }
+
+
+    class SampServerInfoData
+    {
+        /// <summary>
+        /// Hostname
+        /// </summary>
+        public string HostName { get; set; }
+
+        /// <summary>
+        /// Gamemode text
+        /// </summary>
+        public string GameMode { get; set; }
+
+        /// <summary>
+        /// Server language 
+        /// </summary>
+        public string Language { get; set; }
+
+        /// <summary>
+        /// Number of players online
+        /// </summary>
+        public ushort Players { get; set; }
+
+        /// <summary>
+        /// Maximum number of players 
+        /// </summary>
+        public ushort MaxPlayers { get; set; }
+
+        /// <summary>
+        /// Password availability
+        /// </summary>
+        public bool Password { get; set; }
+
+        /// <summary>
+        /// Ping of server
+        /// </summary>
+        public int ServerPing { get; set; }
+    }
+
+    class SampServerRulesData
+    {
+        /// <summary>
+        /// Lagcomp
+        /// </summary>
+        public bool Lagcomp { get; set; }
+
+        /// <summary>
+        /// Mapname
+        /// </summary>
+        public string MapName { get; set; }
+
+        /// <summary>
+        /// Server version
+        /// </summary>
+        public string Version { get; set; }
+
+        /// <summary>
+        /// The version of Client Anti-Cheat, for SAMPCAC-enabled servers
+        /// </summary>
+        public string SAMPCAC_Version { get; set; } = null;
+
+        /// <summary>
+        /// ID of weather in server
+        /// </summary>
+        public sbyte Weather { get; set; }
+
+        /// <summary>
+        /// Link to the server's web page
+        /// </summary>
+        public Uri Weburl { get; set; }
+
+        /// <summary>
+        /// Server time
+        /// </summary>
+        public DateTime WorldTime { get; set; }
+
+        /// <summary>
+        /// Gravity. For CR-MP servers. Default value 0.008000
+        /// </summary>
+        public decimal Gravity { get; set; } = 0.008000M;
+    }
+    class SampServerPlayerData
+    {
+        /// <summary>
+        /// Player ID. Max value 255 (SA-MP feature (bug))
+        /// </summary>
+        public byte PlayerId { get; set; }
+
+        /// <summary>
+        /// Player Name. 
+        /// </summary>
+        public string PlayerName { get; set; }
+
+        /// <summary>
+        /// Player Score. 
+        /// </summary>
+        public int PlayerScore { get; set; }
+
+        /// <summary>
+        /// Ping of player. 
+        /// </summary>
+        public int PlayerPing { get; set; }
     }
 }

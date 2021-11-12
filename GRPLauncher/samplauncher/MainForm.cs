@@ -24,21 +24,17 @@ namespace SAMPLauncher
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
-            SampQuery api = new SampQuery("176.31.233.153", 1493, 'i');
-            //var sq = new SampQuery("176.31.233.153", 1493, '9');
-            //List<SampServerPlayerData> datas = sq.GetServerPlayers();
+            //var sq = new SampQuery("185.169.134.59", 7777); // Test Arizona Mesa
 
             try
             {
-                var responcse = api.read();
-                var players = responcse["players"];
-                var maxPlayers = responcse["maxplayers"];
-                lbOnline.Text = "Текущий онлайн: " + players + "/" + maxPlayers;
+                var sq = new SampQuery("176.31.233.153", 1493);
+                SampServerInfoData data = sq.GetServerInfo();
+                lbOnline.Text = "Текущий онлайн: " + data.Players + "/" + data.MaxPlayers;
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             try

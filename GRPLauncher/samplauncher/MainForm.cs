@@ -19,7 +19,6 @@ namespace SAMPLauncher
     {
         private Point mouseOffset;
         private bool isMouseDown = false;
-        public int close = 0;
         public MainForm()
         {
             InitializeComponent();
@@ -58,13 +57,14 @@ namespace SAMPLauncher
 
         public void onlineCheck()
         {
-            var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
+            //var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
+            //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
             try
             {
-                //var sq = new SampQuery("176.31.233.153", 1493);
+                var sq = new SampQuery("188.225.80.70", 1273);
                 SampServerInfoData data = sq.GetServerInfo();
 
-                while (close == 0)
+                while (true)
                 {
                     lbOnline.Text = "Текущий онлайн: " + data.Players + "/" + data.MaxPlayers;
                     Thread.Sleep(1000);
@@ -201,12 +201,11 @@ namespace SAMPLauncher
         private void pbClose_Click(object sender, EventArgs e)
         {
             Close();
-            _ = close++;
         }        
 
         private void lErrorReport_Click(object sender, EventArgs e)
         {
-            Process.Start("https://vk.com/" + ServerInfo.group);
+            Process.Start("https://vk.com/im?sel=-208029309");
         }
 
         private void pbSupport_Click(object sender, EventArgs e)

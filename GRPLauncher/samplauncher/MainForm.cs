@@ -220,8 +220,8 @@ namespace SAMPLauncher
     static class ServerInfo
     {
         public static readonly string servername = "CRMP";
-        public static readonly string ip = "176.31.233.153";
-        public static readonly string port = "1439";
+        public static readonly string ip = "188.225.80.70";
+        public static readonly string port = "1273";
         public static readonly string group = "grinch_rp_crmp";
         public static readonly string site = "https://vk.com/grinch_rp_crmp"; // Сайт, когда появится, добавить
         public static readonly string ytube = ""; // YouTube канал, когда появится, добавить

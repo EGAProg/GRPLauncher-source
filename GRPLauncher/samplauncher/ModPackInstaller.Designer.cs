@@ -37,10 +37,9 @@
             // lStatus
             // 
             this.lStatus.ForeColor = System.Drawing.SystemColors.Window;
-            this.lStatus.Location = new System.Drawing.Point(12, 54);
-            this.lStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lStatus.Location = new System.Drawing.Point(9, 44);
             this.lStatus.Name = "lStatus";
-            this.lStatus.Size = new System.Drawing.Size(365, 22);
+            this.lStatus.Size = new System.Drawing.Size(274, 18);
             this.lStatus.TabIndex = 2;
             this.lStatus.Text = "Готово к установке";
             this.lStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -51,10 +50,9 @@
             this.bInstall.FlatAppearance.BorderSize = 0;
             this.bInstall.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.bInstall.ForeColor = System.Drawing.Color.Black;
-            this.bInstall.Location = new System.Drawing.Point(16, 81);
-            this.bInstall.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bInstall.Location = new System.Drawing.Point(12, 66);
             this.bInstall.Name = "bInstall";
-            this.bInstall.Size = new System.Drawing.Size(361, 28);
+            this.bInstall.Size = new System.Drawing.Size(271, 23);
             this.bInstall.TabIndex = 3;
             this.bInstall.Text = "Установить";
             this.bInstall.UseVisualStyleBackColor = false;
@@ -62,27 +60,26 @@
             // 
             // pbFileProgess
             // 
-            this.pbFileProgess.Location = new System.Drawing.Point(17, 16);
-            this.pbFileProgess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbFileProgess.Location = new System.Drawing.Point(13, 13);
             this.pbFileProgess.Name = "pbFileProgess";
-            this.pbFileProgess.Size = new System.Drawing.Size(360, 28);
+            this.pbFileProgess.Size = new System.Drawing.Size(270, 23);
             this.pbFileProgess.TabIndex = 4;
             // 
             // ModPackInstaller
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(395, 124);
+            this.ClientSize = new System.Drawing.Size(296, 101);
             this.Controls.Add(this.pbFileProgess);
             this.Controls.Add(this.bInstall);
             this.Controls.Add(this.lStatus);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ModPackInstaller";
             this.Text = "Установка модпака";
+            this.Load += new System.EventHandler(this.ModPackInstaller_Load);
             this.ResumeLayout(false);
 
         }

@@ -32,12 +32,12 @@ namespace SAMPLauncher
                 pbFileProgess.Value = 0;
                 try
                 {
-                    string[] pathes = Directory.GetFiles(Directory.GetCurrentDirectory() + @"/ModPack");
+                    string[] pathes = Directory.GetFiles(Directory.GetCurrentDirectory() + @"/release");
                     for(int i = 0; i < pathes.Length; i++)
                     {
                         pathes[i] = Path.GetFileName(pathes[i]);
                     }
-                    gta3img.Replace(Directory.GetFiles(Directory.GetCurrentDirectory() + @"/ModPack"), pathes, true, backupDirPath, pbFileProgess);
+                    gta3img.Replace(Directory.GetFiles(Directory.GetCurrentDirectory() + @"/release"), pathes, true, backupDirPath, pbFileProgess);
                     ClientInfo.modpackstatus = 2;
                     lStatus.Text = "Установлено";
                     pbFileProgess.Value = 100;
@@ -51,6 +51,11 @@ namespace SAMPLauncher
             {
                 MessageBox.Show("Выберете путь с GTA SA");
             }
+        }
+
+        private void ModPackInstaller_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

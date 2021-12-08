@@ -17,6 +17,7 @@ namespace SAMPLauncher
 {
     public partial class MainForm : Form
     {
+
         private Point mouseOffset;
         private bool isMouseDown = false;
         public MainForm()
@@ -24,6 +25,7 @@ namespace SAMPLauncher
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
 
             Thread onlineCheckThread = new Thread(new ThreadStart(onlineCheck));
             onlineCheckThread.Start();
@@ -53,15 +55,13 @@ namespace SAMPLauncher
             if (!ServerInfo.allowInstallModPack) bModpack.Hide();
 
         }
-
-
         public void onlineCheck()
         {
             //var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
             //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
             try
             {
-                var sq = new SampQuery("188.225.80.70", 1273);
+                var sq = new SampQuery("84.252.73.164", 1115);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
@@ -75,7 +75,6 @@ namespace SAMPLauncher
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void bPlay_Click(object sender, EventArgs e)
         {
             if (tbNickname.Text.Contains("_") && tbNickname.Text.Length <= 32)

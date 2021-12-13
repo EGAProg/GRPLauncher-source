@@ -55,7 +55,7 @@ namespace GRPLauncher
         public void onlineCheck()
         {
             //var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
-            //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
+            //var sq = new SampQuery("188.225.80.70", 4545); // Original Server
             try
             {
                 var sq = new SampQuery("84.252.73.164", 4545);

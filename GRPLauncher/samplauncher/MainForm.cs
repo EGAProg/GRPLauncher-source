@@ -61,7 +61,7 @@ namespace SAMPLauncher
             //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
             try
             {
-                var sq = new SampQuery("84.252.73.164", 1115);
+                var sq = new SampQuery("84.252.73.164", 4545);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
@@ -219,8 +219,8 @@ namespace SAMPLauncher
     static class ServerInfo
     {
         public static readonly string servername = "CRMP";
-        public static readonly string ip = "188.225.80.70";
-        public static readonly string port = "1273";
+        public static readonly string ip = "84.252.73.164";
+        public static readonly string port = "4545";
         public static readonly string group = "grinch_rp_crmp";
         public static readonly string site = "https://vk.com/grinch_rp_crmp"; // Сайт, когда появится, добавить
         public static readonly string ytube = ""; // YouTube канал, когда появится, добавить

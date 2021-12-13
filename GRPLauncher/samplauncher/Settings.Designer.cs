@@ -1,4 +1,4 @@
-﻿namespace SAMPLauncher
+﻿namespace GRPLauncher
 {
     partial class Settings
     {

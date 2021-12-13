@@ -13,11 +13,11 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using SampQueryApi;
 
-namespace SAMPLauncher
+namespace GRPLauncher
 {
     public partial class MainForm : Form
     {
-
+        
         private Point mouseOffset;
         private bool isMouseDown = false;
         public MainForm()
@@ -25,11 +25,8 @@ namespace SAMPLauncher
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-
-
             Thread onlineCheckThread = new Thread(new ThreadStart(onlineCheck));
             onlineCheckThread.Start();
-
             try
             {
                 using (StreamReader sw = new StreamReader(Directory.GetCurrentDirectory() + "/settings.json"))
@@ -61,12 +58,12 @@ namespace SAMPLauncher
             //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
             try
             {
-                var sq = new SampQuery("84.252.73.164", 1115);
+                var sq = new SampQuery("84.252.73.164", 4545);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
                 {
-                    lbOnline.Text = "Текущий онлайн: " + data.Players + "/" + data.MaxPlayers;
+                    lbOnline.Text = $"Текущий онлайн: {data.Players}/{data.MaxPlayers}";
                     Thread.Sleep(1000);
                 }
             }
@@ -75,6 +72,9 @@ namespace SAMPLauncher
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
+
         private void bPlay_Click(object sender, EventArgs e)
         {
             if (tbNickname.Text.Contains("_") && tbNickname.Text.Length <= 32)

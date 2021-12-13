@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using XArchiveDragon;
 
-namespace SAMPLauncher
+namespace GRPLauncher
 {
     public partial class ModPackInstaller : Form
     {
@@ -54,6 +54,11 @@ namespace SAMPLauncher
         }
 
         private void ModPackInstaller_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pbFileProgess_Click(object sender, EventArgs e)
         {
 
         }

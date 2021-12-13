@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 
 
-namespace SAMPLauncher
+namespace GRPLauncher
 {
     public partial class Settings : Form
     {

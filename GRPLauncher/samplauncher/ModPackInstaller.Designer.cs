@@ -1,4 +1,4 @@
-﻿namespace SAMPLauncher
+﻿namespace GRPLauncher
 {
     partial class ModPackInstaller
     {
@@ -64,6 +64,7 @@
             this.pbFileProgess.Name = "pbFileProgess";
             this.pbFileProgess.Size = new System.Drawing.Size(270, 23);
             this.pbFileProgess.TabIndex = 4;
+            this.pbFileProgess.Click += new System.EventHandler(this.pbFileProgess_Click);
             // 
             // ModPackInstaller
             // 

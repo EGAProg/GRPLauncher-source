@@ -23,7 +23,7 @@ namespace GRPLauncher
             InitializeComponent();
             tbPath.Text = ClientInfo.path;
             cbExitOnStart.Checked = ClientInfo.exitonstart;
-
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             //FIXME: По какой-то причине не работает
 
             //bDownloadSamp.Enabled = ServerInfo.allowInstallSamp;
@@ -46,7 +46,7 @@ namespace GRPLauncher
             }
         }
 
-        /*private void bDownloadSamp_Click(object sender, EventArgs e)
+        private void bDownloadSamp_Click(object sender, EventArgs e)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace GRPLauncher
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }*/
+        }
 
         private void bDone_Click(object sender, EventArgs e)
         {

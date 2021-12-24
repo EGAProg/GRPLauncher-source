@@ -25,8 +25,10 @@ namespace GRPLauncher
             InitializeComponent();
             ClientInfoSave cis = new ClientInfoSave();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+
             Thread onlineCheckThread = new Thread(new ThreadStart(onlineCheck));
             onlineCheckThread.Start();
+            
             try
             {
                 using (StreamReader sw = new StreamReader(Directory.GetCurrentDirectory() + "/settings.json"))
@@ -52,13 +54,13 @@ namespace GRPLauncher
             if (!ServerInfo.allowInstallModPack) bModpack.Hide();
 
         }
-        public void onlineCheck()
+        void onlineCheck()
         {
             //var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
             //var sq = new SampQuery("188.225.80.70", 1273); // Original Server
             try
             {
-                var sq = new SampQuery("84.252.73.164", 4545);
+                var sq = new SampQuery("176.9.247.229", 7777);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
@@ -77,13 +79,18 @@ namespace GRPLauncher
 
         private void bPlay_Click(object sender, EventArgs e)
         {
-            if (tbNickname.Text.Contains("_") && tbNickname.Text.Length <= 32)
+            if (tbNickname.Text.Contains("_") && tbNickname.Text.Length <= 32 && tbNickname.Text.Length >= 3)
             {
                 ClientInfo.nickname = tbNickname.Text;
             
                 try
                 {
                     Process.Start(ClientInfo.path + "/samp.exe", ServerInfo.ip + ":" + ServerInfo.port + " -n" + ClientInfo.nickname);
+
+                    if (ClientInfo.exitonstart == true)// Вызывает ошибку
+                    {
+                        Application.Exit();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -91,17 +98,20 @@ namespace GRPLauncher
                 }
                 /*try
                 {
-                    if (ClientInfo.exitonstart)// Вызывает ошибку
+                    if (ClientInfo.exitonstart == true)// Вызывает ошибку
                     {
                         Application.Exit();
-                
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }*/
-            }            
+            }
+            else
+            {
+                MessageBox.Show("Введен не действительный никнейм", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void bModpack_Click(object sender, EventArgs e)
@@ -170,8 +180,7 @@ namespace GRPLauncher
             if (e.Button == MouseButtons.Left)
             {
                 xOffset = -e.X - SystemInformation.FrameBorderSize.Width;
-                yOffset = -e.Y - SystemInformation.CaptionHeight -
-                    SystemInformation.FrameBorderSize.Height;
+                yOffset = -e.Y - SystemInformation.CaptionHeight - SystemInformation.FrameBorderSize.Height;
                 mouseOffset = new Point(xOffset, yOffset);
                 isMouseDown = true;
             }
@@ -189,8 +198,6 @@ namespace GRPLauncher
 
         private void MainForm_MouseUp(object sender, MouseEventArgs e)
         {
-            // Changes the isMouseDown field so that the form does
-            // not move unless the user is pressing the left mouse button.
             if (e.Button == MouseButtons.Left)
             {
                 isMouseDown = false;
@@ -219,10 +226,10 @@ namespace GRPLauncher
     static class ServerInfo
     {
         public static readonly string servername = "CRMP";
-        public static readonly string ip = "84.252.73.164";
-        public static readonly string port = "4545";
+        public static readonly string ip = "176.9.247.229";
+        public static readonly string port = "7777";
         public static readonly string group = "grinch_rp_crmp";
-        public static readonly string site = "https://vk.com/grinch_rp_crmp"; // Сайт, когда появится, добавить
+        public static readonly string site = "http://grinch-rp.ml/?i=1";
         public static readonly string ytube = ""; // YouTube канал, когда появится, добавить
         public static readonly bool allowInstallSamp = true;
         public static readonly bool allowInstallModPack = true;

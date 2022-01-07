@@ -118,160 +118,59 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tbPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 41</value>
+  <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tbPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="tbPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 22</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="tbPath.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;tbPath.Name" xml:space="preserve">
-    <value>tbPath</value>
-  </data>
-  <data name="&gt;&gt;tbPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tbPath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tbPath.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lPath.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 20</value>
-  </data>
-  <data name="lPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 0, 4, 0</value>
-  </data>
-  <data name="lPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 17</value>
-  </data>
-  <data name="lPath.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="lPath.Text" xml:space="preserve">
-    <value>Путь: </value>
-  </data>
-  <data name="&gt;&gt;lPath.Name" xml:space="preserve">
-    <value>lPath</value>
-  </data>
-  <data name="&gt;&gt;lPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lPath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lPath.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="bPath.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="bPath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 39</value>
-  </data>
-  <data name="bPath.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="bPath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 25</value>
-  </data>
-  <data name="bPath.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="bPath.Text" xml:space="preserve">
-    <value>...</value>
-  </data>
-  <data name="&gt;&gt;bPath.Name" xml:space="preserve">
-    <value>bPath</value>
-  </data>
-  <data name="&gt;&gt;bPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bPath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bPath.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="bDone.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="bDone.Location" type="System.Drawing.Point, System.Drawing">
-    <value>125, 71</value>
-  </data>
-  <data name="bDone.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="bDone.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 28</value>
-  </data>
-  <data name="bDone.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="bDone.Text" xml:space="preserve">
-    <value>Готово</value>
-  </data>
-  <data name="&gt;&gt;bDone.Name" xml:space="preserve">
-    <value>bDone</value>
-  </data>
-  <data name="&gt;&gt;bDone.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bDone.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;bDone.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="cbExitOnStart.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cbExitOnStart.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 107</value>
-  </data>
-  <data name="cbExitOnStart.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="cbExitOnStart.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 21</value>
-  </data>
-  <data name="cbExitOnStart.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="cbExitOnStart.Text" xml:space="preserve">
-    <value>Закрыть приложение при запуске</value>
-  </data>
-  <data name="&gt;&gt;cbExitOnStart.Name" xml:space="preserve">
-    <value>cbExitOnStart</value>
-  </data>
-  <data name="&gt;&gt;cbExitOnStart.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbExitOnStart.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;cbExitOnStart.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 16</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>355, 143</value>
+  <data name="pictureBox1.InitialImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAR4AAABOCAYAAAD2MHmVAAAABGdBTUEAALGPC/xhBQAABP5JREFUeF7t
+        3T2IXHUYhfGoJDGayhQqbiFiI5raFBYaLNRCo5LKSiWpFPxAUYhBiIWgjREFkYgYLEQRTCtauI2FaKOB
+        aGM0URAJMcWKuFHPWcbL/Tg7Ox/3P9nsPMWv2JfZO3cW3ofdnZk7m17cuXyhXCf3yQF5TxblO/lRzsh5
+        +RfAxLxD3iXvlHfLO+Zde0H2yLWSdrO4OCxkuzwob4t/EOkHBWC2jssb8oB4R9Pu9i4Oe3Sp3CUfyJKk
+        Bw5gffCOele9s97dtNO9iMMebJFH5QdJDxDA+ubd9Q57l9OOTyUOp+CTfFx+kvRgAFxcvMve6V4DFIcT
+        ulv4DQfYmLzb90ja/bHF4ZiukvclnSyAjcW7vkNSC0YWh2O4Q36WdIIANibvvHc/NWEkcTiiZ2RZ0okB
+        2Ni8+25AasOa4nANl8lbkk4GwHxxC9yE1IpVxeEQl8vHkk4AwHxyE9yG1IwoDlfhA38q6Y4BzDe3YZuk
+        dnTEYeBfpT6RdIcAYG7ESH92xWHwpqQ7AoA6tyI1pCEOW/yf63QHAJA8K6kllTisuV14yhzAONyMoa/z
+        icMBvyL5lKQDA8AwbocbktoyNDy8DQLANNyQ1JZVw+M3fKYDAcA43JJOYzoD2SwnJB0EAMbxvbgpjc40
+        vhh4TNIBAGASbkqjM40vxBf74SJeAPrkpjQuJFaPjvlSh+kbAWAa+6RqTT06vrgzVxAEUILbUl1Avh4e
+        v+AnfQMA9GG3dMLzrqQbA0Af3JhGeK6Qc5JuDAB9cGOulCo8eyXdEAD65NZU4TkyGAJASe9IFR4+yxzA
+        LLg1K+FZqA0BoLQFh2dPawgAJd3v8BxsDQGgpIMOz9HWEABKOurwLLaGAFDSosPzbWsIACWdcHhOtoYA
+        UNLvDs/Z1hAASlpyePj4GgAz5fCcbw8BoKB/+FMLwKyddXhOt4YAUNJph+eb1hAASvra4TnWGgJASccc
+        ntdaQwAo6bDDs781BICS9js8u1pDAChpl8OzVf6sDQGgFLdmq8NjXwyGAFCSW1Ndc/m5wRAASnpeqvDc
+        MhgCQEk7pQqP8UJCACW5MSu9qYfnSUk3BoA+uDGd8Fwtf0v6BgCYhttyjXTCY1z4HUAJbkvVmnp07Cbh
+        +jwA+uSmuC1Va+rR+d+Hkr4ZACbxkTQ60/hi4Gbhfz0A+uCW+OU6jc40vqh5RdJBAGAcr0qnMZ3BwHY5
+        JelAADAKN8Qt6TSmM6i5V9LBAGAUbkhqy9Dw2GFJBwSAYV6X1JQVcVizRb6SdGAASNwMtyM1ZUUcttwg
+        v0m6AwCocyvcjNSSShwGtwqfvwVgmD/ErUgNaYjDVeyWvyTdIYD55ja4EakdHXE4hP9LvSTpjgHMJzdh
+        1Wewkjhcw21yRtIJAJgvboGbkFqxqjgcgV8CfVLSiQCYD25A5+0Qo4jDEe0QPoUUmE/efTcgtWFNcTiG
+        S8RXFeOfzsB88K575737qQkjicMJ+Fobn0k6UQAbw+fSuK7OpOJwCg/JL5JOGsDFyTvt3U47P5E4nNI2
+        eUp+lfQgAFwcvMNPi3c67frE4rAn/mjkR+RLSQ8KwPrknX1YvMNpt6cWhwX4KbdDclzSAwVwYXk3X5KJ
+        nh4fVxwWdr34N6Ej4g/44hkxYLbOid9B7h30Lnon064WE4cztllulDtlr+yTJ+SAvAxgYt4h75J3yrvl
+        91ItSNrDGVre9B+M/fYKK2/bzAAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1638,17 +1537,5 @@
         //////////////AAAAD///////////////////////////AAAAD///////////////////////////AA
         AAA=
 </value>
-  </data>
-  <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

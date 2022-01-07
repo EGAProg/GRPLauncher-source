@@ -37,7 +37,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.bModpack = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.lModPackInstall = new System.Windows.Forms.Label();
+            this.lLauncherUpdate = new System.Windows.Forms.Label();
             this.bPlay = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -148,7 +148,7 @@
             this.bModpack.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.bModpack.TabIndex = 11;
             this.bModpack.TabStop = false;
-            this.bModpack.Click += new System.EventHandler(this.bModpack_Click);
+            this.bModpack.Click += new System.EventHandler(this.bLauncher);
             // 
             // label3
             // 
@@ -162,16 +162,17 @@
             this.label3.TabIndex = 12;
             this.label3.Text = "Новости Проекта";
             // 
-            // lModPackInstall
+            // lLauncherUpdate
             // 
-            this.lModPackInstall.AutoSize = true;
-            this.lModPackInstall.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.lModPackInstall.ForeColor = System.Drawing.SystemColors.Control;
-            this.lModPackInstall.Location = new System.Drawing.Point(1081, 258);
-            this.lModPackInstall.Name = "lModPackInstall";
-            this.lModPackInstall.Size = new System.Drawing.Size(157, 17);
-            this.lModPackInstall.TabIndex = 13;
-            this.lModPackInstall.Text = "Обновление лаунчера";
+            this.lLauncherUpdate.AutoSize = true;
+            this.lLauncherUpdate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
+            this.lLauncherUpdate.ForeColor = System.Drawing.SystemColors.Control;
+            this.lLauncherUpdate.Location = new System.Drawing.Point(1081, 258);
+            this.lLauncherUpdate.Name = "lLauncherUpdate";
+            this.lLauncherUpdate.Size = new System.Drawing.Size(157, 17);
+            this.lLauncherUpdate.TabIndex = 13;
+            this.lLauncherUpdate.Text = "Обновление лаунчера";
+            this.lLauncherUpdate.Click += new System.EventHandler(this.bLauncher);
             // 
             // bPlay
             // 
@@ -243,6 +244,7 @@
             this.label6.Size = new System.Drawing.Size(103, 17);
             this.label6.TabIndex = 20;
             this.label6.Text = "Новый модпак";
+            this.label6.Click += new System.EventHandler(this.bModpack_Click);
             // 
             // pictureBox4
             // 
@@ -255,6 +257,7 @@
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 19;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Click += new System.EventHandler(this.bModpack_Click);
             // 
             // lErrorReport
             // 
@@ -331,7 +334,7 @@
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.bPlay);
-            this.Controls.Add(this.lModPackInstall);
+            this.Controls.Add(this.lLauncherUpdate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.bModpack);
             this.Controls.Add(this.pictureBox1);
@@ -349,7 +352,6 @@
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "GRPLauncher";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyUp);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
@@ -381,7 +383,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox bModpack;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label lModPackInstall;
+        private System.Windows.Forms.Label lLauncherUpdate;
         private System.Windows.Forms.PictureBox bPlay;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label label4;

@@ -10,6 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Forms;
+
+
+// Other libs
+using System.Net;
+
+
+// Non System libs
 using Newtonsoft.Json;
 using SampQueryApi;
 
@@ -56,11 +63,9 @@ namespace GRPLauncher
         }
         void onlineCheck()
         {
-            //var sq = new SampQuery("51.83.217.86", 7783); // Test Random Server
-            //var sq = new SampQuery("188.225.80.70", 4545); // Original Server
             try
             {
-                var sq = new SampQuery("176.9.247.229", 7777);
+                SampQuery sq = new SampQuery("176.9.247.229", 7777);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
@@ -96,17 +101,7 @@ namespace GRPLauncher
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                /*try
-                {
-                    if (ClientInfo.exitonstart == true)// Вызывает ошибку
-                    {
-                        Application.Exit();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }*/
+                
             }
             else
             {
@@ -127,20 +122,7 @@ namespace GRPLauncher
             formSettings.ShowDialog();
         }
 
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            ClientInfoSave cis = new ClientInfoSave();
-            cis.nickname = ClientInfo.nickname;
-            cis.path = ClientInfo.path;
-            cis.modpackstatus = ClientInfo.modpackstatus;
-            cis.exitonstart = ClientInfo.exitonstart;
-            string serialized = JsonConvert.SerializeObject(cis);
-            using (StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/settings.json"))
-            {
-                sw.Write(serialized);
-                sw.Close();
-            }
-        }
+        
 
         private void pbVK_Click(object sender, EventArgs e)
         {
@@ -183,6 +165,7 @@ namespace GRPLauncher
                 yOffset = -e.Y - SystemInformation.CaptionHeight - SystemInformation.FrameBorderSize.Height;
                 mouseOffset = new Point(xOffset, yOffset);
                 isMouseDown = true;
+                
             }
         }
 
@@ -206,6 +189,17 @@ namespace GRPLauncher
 
         private void pbClose_Click(object sender, EventArgs e)
         {
+            ClientInfoSave cis = new ClientInfoSave();
+            cis.nickname = ClientInfo.nickname;
+            cis.path = ClientInfo.path;
+            cis.modpackstatus = ClientInfo.modpackstatus;
+            cis.exitonstart = ClientInfo.exitonstart;
+            string serialized = JsonConvert.SerializeObject(cis);
+            using (StreamWriter sw = new StreamWriter(Directory.GetCurrentDirectory() + "/settings.json"))
+            {
+                sw.Write(serialized);
+                sw.Close();
+            }
             Close();
         }        
 
@@ -219,9 +213,13 @@ namespace GRPLauncher
             Process.Start("https://vk.com/im?sel=-208029309");
         }
 
-        
-           
-}
+        private void bLauncher(object sender, EventArgs e)
+        {
+            LauncherUpdate lUpdate = new LauncherUpdate();
+
+            lUpdate.ShowDialog();
+        }
+    }
 
     static class ServerInfo
     {

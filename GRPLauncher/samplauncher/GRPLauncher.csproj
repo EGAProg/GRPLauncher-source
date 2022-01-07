@@ -47,9 +47,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>samp-3833caf.ico</ApplicationIcon>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -90,6 +95,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LauncherUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LauncherUpdate.Designer.cs">
+      <DependentUpon>LauncherUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +123,9 @@
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="LauncherUpdate.resx">
+      <DependentUpon>LauncherUpdate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +167,7 @@
     <None Include="Resources\globe_filled-100.png" />
     <None Include="Resources\background.jpg" />
     <None Include="Resources\background.png" />
+    <Content Include="logo.ico" />
     <Content Include="samp-3833caf.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.IO;
 using System.Net;
 
 namespace GRPLauncher
@@ -17,22 +18,50 @@ namespace GRPLauncher
         private Point mouseOffset;
         private bool isMouseDown = false;
 
+        public string versionUrl = "https://github.com/EGAProg/test-txt-download/blob/main/version.txt";
+
         public LauncherUpdate()
         {
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             
-            using (WebClient wc = new WebClient())
+            using (WebClient versionClient = new WebClient())
             {
-                wc.Headers.Add("a", "a");
                 try
                 {
-                    wc.DownloadFile("https://github.com/github/platform-samples/blob/master/LICENSE.txt", @"C:/Users/User/Desktop/test/test.txt");
+                    Stream stream = versionClient.OpenRead(versionUrl);
+                    StreamReader reader = new StreamReader(stream);
+
+                    string content = reader.ReadToEnd();
+
+                    StringBuilder sb = new StringBuilder(content.Length);
+                    foreach (char i in content)
+                    {
+                        if (i == '\n')
+                        {
+                            sb.Append(Environment.NewLine);
+                        }
+                        else if (i != '\r' && i != '\t')
+                            sb.Append(i);
+                    }
+
+                    content = sb.ToString();
+                    try
+                    {
+                        versionClient.DownloadFile(versionUrl, Directory.GetCurrentDirectory() + @"/version.txt");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                
+                
+                
 
             }
         }

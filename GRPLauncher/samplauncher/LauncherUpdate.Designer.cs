@@ -39,9 +39,10 @@ namespace GRPLauncher
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 12);
+            this.progressBar1.Location = new System.Drawing.Point(9, 10);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(482, 27);
+            this.progressBar1.Size = new System.Drawing.Size(362, 22);
             this.progressBar1.TabIndex = 0;
             // 
             // pictureBox1
@@ -49,9 +50,10 @@ namespace GRPLauncher
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(181, 97);
+            this.pictureBox1.Location = new System.Drawing.Point(136, 79);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(156, 47);
+            this.pictureBox1.Size = new System.Drawing.Size(117, 38);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.bDone);
@@ -62,9 +64,10 @@ namespace GRPLauncher
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(45)))), ((int)(((byte)(252)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.label1.Location = new System.Drawing.Point(226, 111);
+            this.label1.Location = new System.Drawing.Point(170, 90);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 20);
+            this.label1.Size = new System.Drawing.Size(54, 17);
             this.label1.TabIndex = 2;
             this.label1.Tag = "";
             this.label1.Text = "Готово";
@@ -73,23 +76,25 @@ namespace GRPLauncher
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(178, 59);
+            this.label2.Location = new System.Drawing.Point(134, 48);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(150, 17);
+            this.label2.Size = new System.Drawing.Size(116, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Готово к обновлению";
             // 
             // LauncherUpdate
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(15)))), ((int)(((byte)(15)))), ((int)(((byte)(15)))));
-            this.ClientSize = new System.Drawing.Size(506, 147);
+            this.ClientSize = new System.Drawing.Size(380, 119);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.progressBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LauncherUpdate";
             this.Text = "LauncherUpdate";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.LauncherUpdate_KeyUp);

@@ -65,7 +65,7 @@ namespace GRPLauncher
         {
             try
             {
-                SampQuery sq = new SampQuery("176.9.247.229", 7777);
+                SampQuery sq = new SampQuery("176.9.247.229", 7171);
                 SampServerInfoData data = sq.GetServerInfo();
 
                 while (true)
@@ -201,6 +201,7 @@ namespace GRPLauncher
                 sw.Close();
             }
             Close();
+
         }        
 
         private void lErrorReport_Click(object sender, EventArgs e)
@@ -219,13 +220,18 @@ namespace GRPLauncher
 
             lUpdate.ShowDialog();
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     static class ServerInfo
     {
         public static readonly string servername = "CRMP";
         public static readonly string ip = "176.9.247.229";
-        public static readonly string port = "7777";
+        public static readonly string port = "7171";
         public static readonly string group = "grinch_rp_crmp";
         public static readonly string site = "http://grinch-rp.ml/?i=1";
         public static readonly string ytube = ""; // YouTube канал, когда появится, добавить
